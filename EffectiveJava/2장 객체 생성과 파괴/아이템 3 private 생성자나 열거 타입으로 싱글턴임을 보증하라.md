@@ -5,10 +5,10 @@
 ## 싱글턴을 만드는 방법
 ```java
 public class Elvis {
-	public static final Elvis INSTANCE = new Elvis();
-	private Elvis() { ... }
+ public static final Elvis INSTANCE = new Elvis();
+ private Elvis() { ... }
 
-	public void leaveTheBuilding() { ... }
+ public void leaveTheBuilding() { ... }
 }
 ```
 - 생성자를 `private`로 만들고 `INSTANCE`를 초기화할 때 한번만 호출되기 때문에 인스턴스가 하나뿐임을 보증할 수 있다.
@@ -18,11 +18,11 @@ public class Elvis {
 
 ```java
 public class Elvis {
-	private static final Elvis INSTANCE = new Elvis();
-	private Elvis() { ... }
-	public static Elvis getInstance() { return INSTANCE; }
+ private static final Elvis INSTANCE = new Elvis();
+ private Elvis() { ... }
+ public static Elvis getInstance() { return INSTANCE; }
 
-	public void leaveTheBuilding() { ... }
+ public void leaveTheBuilding() { ... }
 }
 ```
 - `getInstance`메소드를 통해 항상 `INSTANCE`를 반환시키도록 한다.
@@ -81,10 +81,10 @@ private static String getExpensiveValue() {
 
 ```java
 public static void main(String[] args) {
-	long startTime = System.currentTimeMillis();
-	getValueUsingSupplier(true, () -> getExpensiveValue());
-	getValueUsingSupplier(false, () -> getExpensiveValue());
-	getValueUsingSupplier(false, () -> getExpensiveValue());
+ long startTime = System.currentTimeMillis();
+ getValueUsingSupplier(true, () -> getExpensiveValue());
+ getValueUsingSupplier(false, () -> getExpensiveValue());
+ getValueUsingSupplier(false, () -> getExpensiveValue());
     System.out.println("passed Time: "+ (System.currentTimeMillis()-startTime)/1000+"sec" );
 }
 private static void getValueUsingSupplier(boolean valid, Supplier<String> valueSupplier) {
@@ -105,9 +105,9 @@ private static void getValueUsingSupplier(boolean valid, Supplier<String> 
 ## ENUM을 통한 싱글턴 선언
 ```java
 public enum Elvis {
-	INSTANCE;
+ INSTANCE;
 
-	public void leaveTheBuilding() { ... }
+ public void leaveTheBuilding() { ... }
 }
 ```
 - 간결하고 직렬화 문제도, 리플렉션 공격에도 방어가 가능하다.
