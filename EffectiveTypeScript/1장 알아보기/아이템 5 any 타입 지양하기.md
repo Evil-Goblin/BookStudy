@@ -6,7 +6,7 @@
 
 ## any타입은 IDE를 이용할 수 없다.
 
-![Untitled(7)](../Untitled%20(7).png)
+![Untitled (7)](https://user-images.githubusercontent.com/74400861/235360392-9dc2a2cc-78be-4c24-828a-70c0a313a43b.png)
 
 -   실시간으로 변경이 안되는 것을 볼 수 있다.
 -   애초에 사용위치조차 찾지 못한다.
