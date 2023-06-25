@@ -175,7 +175,7 @@ public class Item8Client {
 // Room.close
 // State.run
 ```
-- `try-with-resource`를 통해 `close`가 호출된 경우
+- `try-with-resources`를 통해 `close`가 호출된 경우
 
 이때 `State`인스턴스는 `Room`인스턴스를 절대로 참조해서는 안 된다.\
 `Room`인스턴스를 참조하게 되면 순환참조에 의해 `GC`가 `Room`인스턴스를 회수할 수 없게 된다.\
