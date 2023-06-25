@@ -69,7 +69,7 @@ public class TryWithResourcesSample {
 ```
 - 위의 예제를 `try-with-resources`를 통해 구현한 코드이다.
 - 코드의 길이도 짧고 가독성도 좋으면 문제를 진단하기도 좋다.
-- 이전 코드에서와 같은 문제가 발생하여 `readLine`, `close`에 연속하여 예외가 발생한 경우 `close`에 발생ㅇ한 예외는 숨겨지고 `readLine`에서 발생한 예외가 기록된다.
+- 이전 코드에서와 같은 문제가 발생하여 `readLine`, `close`에 연속하여 예외가 발생한 경우 `close`에 발생한 예외는 숨겨지고 `readLine`에서 발생한 예외가 기록된다.
 - 이처럼 숨겨진 예외들을 `suppressed exception`이라고 하며 `Java 7` 부터 적용되었다.
 
 ```java
