@@ -83,6 +83,75 @@ public static String firstLineOfFile(String path) throws IOException {
 ```
 - `catch` 절을 사용하는 것 또한 가능하다.
 
+## `suppressd exception`
+```java
+public class ThrowExceptionSample implements AutoCloseable {
+
+    public void throwing() {
+        throw new RuntimeException();
+    }
+
+    @Override
+    public void close() throws Exception {
+        throw new RuntimeException();
+    }
+}
+```
+- `close`와 로직에서 에러를 던지도록 하였다.
+- 이 클래스를 이용해 `try-finally`와 `try-with-resources`의 스택트레이스의 차이를 보려고한다.
+
+```java
+public class TryFinallySample {
+    public void tryFinalException() throws Exception {
+        ThrowExceptionSample throwExceptionSample = new ThrowExceptionSample();
+        try {
+            throwExceptionSample.throwing();
+        } finally {
+            throwExceptionSample.close();
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        TryFinallySample tryFinallySample = new TryFinallySample();
+        tryFinallySample.tryFinalException();
+    }
+}
+```
+```
+Exception in thread "main" java.lang.RuntimeException
+	at study.chapter2.item9.ThrowExceptionSample.close(ThrowExceptionSample.java:11)
+	at study.chapter2.item9.TryFinallySample.tryFinalException(TryFinallySample.java:11)
+	at study.chapter2.item9.TryFinallySample.main(TryFinallySample.java:17)
+```
+- `try-finally`의 경우 나중에 터진 에러에 대한 정보만 표시되어 먼저 터진 에러는 알 수 없다.
+
+```java
+public class TryWithResourcesSample {
+    public void tryWithResourcesException() throws Exception {
+        try (ThrowExceptionSample throwExceptionSample = new ThrowExceptionSample()) {
+            throwExceptionSample.throwing();
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        TryWithResourcesSample tryWithResourcesSample = new TryWithResourcesSample();
+        tryWithResourcesSample.tryWithResourcesException();
+    }
+}
+```
+```
+Exception in thread "main" java.lang.RuntimeException
+	at study.chapter2.item9.ThrowExceptionSample.throwing(ThrowExceptionSample.java:6)
+	at study.chapter2.item9.TryWithResourcesSample.tryWithResourcesException(TryWithResourcesSample.java:9)
+	at study.chapter2.item9.TryWithResourcesSample.main(TryWithResourcesSample.java:15)
+	Suppressed: java.lang.RuntimeException
+		at study.chapter2.item9.ThrowExceptionSample.close(ThrowExceptionSample.java:11)
+		at study.chapter2.item9.TryWithResourcesSample.tryWithResourcesException(TryWithResourcesSample.java:8)
+		... 1 more
+```
+- `try-with-resources`의 경우 가장 먼저 터진 에러부터 출력해주고 후에 터진 에러를 `Suppressed`를 통해 보여준다.
+
+
 ## 정리
 ```
 꼭 회수해야 하는 자원을 다룰때 try-finally 말고, try-with-resources를 사용하자.
