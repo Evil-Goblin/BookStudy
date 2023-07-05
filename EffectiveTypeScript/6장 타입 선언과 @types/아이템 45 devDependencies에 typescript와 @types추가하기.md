@@ -31,4 +31,3 @@ $ npm install react
 $ npm install --save-dev @types/react
 ```
 - 라이브러리와 타입의 의존성 설치의 예시이다.
-- 
