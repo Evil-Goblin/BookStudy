@@ -2,6 +2,7 @@ package Chapter01;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static Chapter01.Color.GREEN;
@@ -46,6 +47,13 @@ public class AppleFilter {
         return result;
     }
 
+    static void prettyPrintApple(List<Apple> inventory, Function<Apple, String> function) {
+        for (Apple apple : inventory) {
+            String toString = function.apply(apple);
+            System.out.println("toString = " + toString);
+        }
+    }
+
     public static void main(String[] args) {
         List<Apple> inventory = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -73,7 +81,10 @@ public class AppleFilter {
         System.out.println("filteredApplesLambdaGreen = " + filteredApplesLambdaGreen);
         System.out.println("filteredApplesLambdaHeavy = " + filteredApplesLambdaHeavy);
 
-
+        prettyPrintApple(inventory, apple -> {
+            String characteristic = apple.getWeight() > 150 ? "heavy" : "light";
+            return "A " + characteristic + " " + apple.getColor() + " apple";
+        });
     }
 
 }
