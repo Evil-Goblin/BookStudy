@@ -1,5 +1,7 @@
 package Chapter03;
 
+import Chapter01.Apple;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -13,6 +15,15 @@ public class PredicateSample {
             }
         }
         return result;
+    }
+
+    public static void negativePredicate(Predicate<Apple> isRedApple) {
+        Predicate<Apple> isNotRedApple = isRedApple.negate(); // Predicate 의 조건을 반전시킨 객체
+    }
+
+    public static void predicateChain(Predicate<Apple> isRedApple) {
+        Predicate<Apple> redAndHeavyApple = isRedApple.and(apple -> apple.getWeight() > 150);
+        Predicate<Apple> redOrHeavyApple = isRedApple.or(apple -> apple.getWeight() > 150);
     }
 
     public static void main(String[] args) {
