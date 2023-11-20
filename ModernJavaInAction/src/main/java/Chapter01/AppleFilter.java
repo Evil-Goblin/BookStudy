@@ -8,10 +8,6 @@ import java.util.function.Predicate;
 import static Chapter01.Color.GREEN;
 import static Chapter01.Color.RED;
 
-enum Color {
-    RED, GREEN
-}
-
 public class AppleFilter {
     static List<Apple> filterGreenApples(List<Apple> inventory) {
         List<Apple> result = new ArrayList<>();
@@ -89,37 +85,3 @@ public class AppleFilter {
 
 }
 
-class Apple {
-
-    private final Color color;
-    private final int weight;
-
-    public Apple(Color color, int weight) {
-        this.color = color;
-        this.weight = weight;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    @Override
-    public String toString() {
-        return "Apple{" +
-                "color=" + color +
-                ", weight=" + weight +
-                '}';
-    }
-
-    public static boolean isGreenApple(Apple apple) {
-        return GREEN.equals(apple.getColor());
-    }
-
-    public static boolean isHeavyApple(Apple apple) {
-        return apple.getWeight() > 150;
-    }
-}
