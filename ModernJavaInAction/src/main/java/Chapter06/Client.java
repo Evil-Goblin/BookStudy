@@ -32,6 +32,14 @@ public class Client {
         그룹화(menu);
 
         분할(menu);
+
+        ArrayList<Object> 발행누적합침 = menu.stream().collect(
+                ArrayList::new,
+                List::add,
+                List::addAll
+        );
+
+        System.out.println("발행누적합침 = " + 발행누적합침);
     }
 
     private static void 분할(List<Dish> menu) {
