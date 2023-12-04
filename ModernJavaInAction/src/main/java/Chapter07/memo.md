@@ -68,3 +68,33 @@ _ForkJoinSumCalculator 참고_
 - 병렬 스트림과 같이 포크/조인 프레임워크를 이용하는 것이 순차 처리보다 무조건 빠를 것이라는 생각은 버려라.
   - 병렬 처리로 성능이 개선되려면 태스크를 여러 독립적 서브태스크로 분할할 수 있어야 한다.
   - 각 서브태스크의 실행시간은 새로운 태스크를 포킹하는 데 드는 시간보다 길어야 한다.
+
+## Spliterator
+
+```java
+public interface Spliterator<T> {
+  boolean tryAdvance(Consumer<? super T> action);
+  Spliterator<T> trySplit();
+  long estimateSize();
+  int characteristics();
+}
+```
+- `tryAdvance`
+  - `Spliterator` 의 요소를 하나씩 순차적으로 소비하면서 탐색해야 할 요소가 남아있으면 참을 반환한다.
+- `trySplit`
+  - `Spliterator` 의 일부 요소를 분할해서 두 번째 `Spliterator` 를 생성한다.
+- `estimateSize`
+  - 탐색해야 할 요소 수
+- `characteristics`
+  - `Spliterator` 자체의 특성 집합을 포함하는 `int` 를 반환한다. 
+
+| 특성         | 의미                                                                            |
+|------------|-------------------------------------------------------------------------------|
+| ORDERED    | 리스트처럼 요소에 정해진 순서가 있으므로 `Spliterator` 는 요소를 탐색하고 분할할 때 이 순서에 유의해야 한다.          |
+| DISTINCT   | `x`, `y` 두 요소를 방문했을 때 `x.equals(y)` 는 항상 `false` 를 반환한다.                      |
+| SORTED     | 탐색된 요소는 미리 정의된 정렬 순서를 따른다.                                                    |
+| SIZED      | 크기가 알려진 소스(예: `Set`)로 `Spliterator` 를 생성했으므로 `estimatedSize()` 는 정확한 값을 반환한다. |
+| NON-NULL   | 탐색하는 모든 요소는 `null` 이 아니다.                                                     |
+| IMMUTABLE  | 이 `Spliterator` 의 소스는 불변이다. 즉, 요소를 탐색하는 동안 요소를 추가하거나, 삭제하거나, 고칠 수 없다.         |
+| CONCURRENT | 동기화 없이 `Spliterator` 의 소스를 여러 스레드에서 동시에 고칠 수 있다.                              |
+| SUBSIZED   | 이 `Spliterator` 그리고 분할되는 모든 `Spliterator` 는 `SIZED` 특성을 갖는다.                  |
