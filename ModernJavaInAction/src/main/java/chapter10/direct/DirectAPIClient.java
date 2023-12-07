@@ -1,4 +1,4 @@
-package chapter10;
+package chapter10.direct;
 
 import chapter10.domain.Order;
 import chapter10.domain.Stock;
