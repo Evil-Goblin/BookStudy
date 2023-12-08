@@ -16,6 +16,5 @@ public class MixedClient {
                         .on("NASDAQ")
                         .at(125.00))
         );
-
     }
 }
