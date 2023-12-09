@@ -1,4 +1,4 @@
-package chapter17.flow;
+package chapter17;
 
 import java.util.Random;
 

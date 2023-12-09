@@ -1,5 +1,7 @@
 package chapter17.flow;
 
+import chapter17.TempInfo;
+
 import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Subscriber;
 
