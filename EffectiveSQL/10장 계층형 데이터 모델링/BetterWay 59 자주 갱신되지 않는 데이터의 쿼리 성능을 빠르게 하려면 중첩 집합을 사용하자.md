@@ -1,4 +1,4 @@
-# 중첩 집합(Nested Set)
+## 중첩 집합(Nested Set)
 ![중첩_집합_조직도](https://github.com/Evil-Goblin/BookStudy/assets/74400861/844800cb-3ae3-4631-8a4c-9a9b0ec2b7b9)
 - 조직도를 중첩 집합으로 만든 그림이다.
 - 왼쪽에서 오른쪽으로 가면서 자식 노드가 있을 때는 아래로, 더 이상 형제 노드가 없을 때는 다시 위로 올라간다.
